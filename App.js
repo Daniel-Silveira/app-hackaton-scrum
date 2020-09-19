@@ -4,14 +4,18 @@ import { ThemeProvider } from "styled-components";
 import { StyleSheet, Text, View } from "react-native";
 import theme from "./theme";
 import Navigation from "./src/navigation";
+import { Provider } from "react-redux";
+import store from "./src/redux";
 
 export default function App() {
   console.disableYellowBox = true;
 
   return (
-    <ThemeProvider theme={theme}>
-      <Navigation />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
+        <Navigation />
+      </ThemeProvider>
+    </Provider>
   );
 }
 
