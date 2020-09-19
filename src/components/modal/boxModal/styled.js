@@ -37,7 +37,7 @@ export const Icon = styled.View`
   width: 80px;
   height: 6px;
   border-radius: 16px;
-  background-color: ${g => g.theme.color.button.greyLighter};
+  background-color: #ddd;
   margin-top: 10px;
 `
 

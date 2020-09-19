@@ -3,7 +3,7 @@ import * as Styled from './styled'
 import { useRoute, useNavigation } from '@react-navigation/native'
 
 const BoxModal = props => {
-  const { handleGoBack, headerShown, gestureResponseDistance } = props
+  const { handleGoBack, headerShown, gestureResponseDistance, overlay } = props
   const route = useRoute()
   const size = props.size
   const noReturn = route.params?.noReturn
@@ -13,7 +13,7 @@ const BoxModal = props => {
     headerShown,
     gestureResponseDistance,
     cardStyle: {
-      backgroundColor: 'rgba(0,0,0,.3)',
+      backgroundColor: overlay && 'rgba(0,0,0,.3)',
     },
   })
 

@@ -14,7 +14,11 @@ const Initial = ({ navigation }) => {
         mTop={20}
         text="Criar sala"
         onPress={() =>
-          navigation.navigate("Modal", { screen: <BoxModal></BoxModal> })
+          navigation.navigate("Modal", {
+            component: (props) => (
+              <BoxModal size={50} headerShown={false} {...props}></BoxModal>
+            ),
+          })
         }
       />
       <Button color="primary" align="center" mTop={20} text="Entrar na sala" />
