@@ -10,7 +10,7 @@ const HeaderCards = () => {
         <Feather name="chevron-left" size={24} color="black" />
       </ActionButton>
       <DefaultText
-        text="Create job"
+        text=""
         themeColor="primary"
         type="title2"
         bold
