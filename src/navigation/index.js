@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import {
   createStackNavigator,
@@ -11,7 +11,7 @@ import { getPercentageSizeHeightNoPx } from "../utils";
 import Modal from "../components/modal";
 import { AsyncStorage } from "react-native";
 import { requestAccessSuccess } from "../redux/user";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import RoomsScreen from "../screens/rooms";
 import Room from "../screens/room";
 
@@ -36,7 +36,7 @@ const Navigation = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator mode="card" initialRouteName="Initial">
+      <Stack.Navigator mode="card" initialRouteName="Cards">
         <Stack.Screen
           name="Initial"
           options={defaultOptions}

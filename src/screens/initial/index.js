@@ -1,17 +1,18 @@
-import React, { useEffect } from "react";
-import { Text } from "react-native";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Button from "../../components/button";
 import CreateRoom from "../../components/createRoom";
+import EnterRoom from "../../components/enterRoom";
+import Input from "../../components/input";
 import Login from "../../components/login";
 import BoxModal from "../../components/modal/boxModal";
-import { listRoom } from "../../redux/room";
+import { joinRoom, listRoom } from "../../redux/room";
 import { Container } from "./styled";
 
 const Initial = ({ navigation }) => {
   const {
     user: { user },
-    room: { list },
+    room: { list, private: privateRoom, joined, room: roomData },
   } = useSelector((value) => value);
 
   const dispatch = useDispatch();
@@ -35,9 +36,26 @@ const Initial = ({ navigation }) => {
     });
   };
 
+  const enterRoom = () => {
+    return navigation.navigate("Modal", {
+      component: (props) => (
+        <BoxModal size={30} headerShown={false} {...props}>
+          <EnterRoom />
+        </BoxModal>
+      ),
+    });
+  };
+
   useEffect(() => {
     !!user._id && dispatch(listRoom(user._id));
   }, [user]);
+
+  useEffect(() => {
+    !!joined &&
+      navigation.navigate("Room", {
+        data: roomData,
+      });
+  }, [joined]);
 
   return (
     <Container>
@@ -57,7 +75,14 @@ const Initial = ({ navigation }) => {
         text="Criar sala"
         onPress={handleCreate}
       />
-      <Button color="primary" align="center" mTop={20} text="Entrar na sala" />
+
+      <Button
+        color="primary"
+        align="center"
+        mTop={20}
+        text="Entrar na sala"
+        onPress={enterRoom}
+      />
       <Button color="primary" align="center" mTop={20} text="Scrum Poker" />
     </Container>
   );

@@ -6,6 +6,16 @@ export const { createRoom } = createActions({
   [CREATE_ROOM]: (credentials) => ({ credentials }),
 });
 
+export const JOIN_ROOM = "JOIN_ROOM";
+export const JOIN_ROOM_SUCCESS = "JOIN_ROOM_SUCCESS";
+export const JOIN_ROOM_PRIVATE = "JOIN_ROOM_PRIVATE";
+
+export const { joinRoom, joinRoomSuccess, joinRoomPrivate } = createActions({
+  [JOIN_ROOM]: (credentials) => credentials,
+  [JOIN_ROOM_SUCCESS]: (credentials) => credentials,
+  [JOIN_ROOM_PRIVATE]: (boolean) => boolean,
+});
+
 export const LIST_ROOM = "LIST_ROOM";
 export const LIST_ROOM_SUCCESS = "LIST_ROOM_SUCCESS";
 
@@ -21,8 +31,11 @@ export const { createdStatus } = createActions({
 });
 
 export const INITIAL_STATE = {
-  list: {},
+  list: [],
   created: false,
+  room: {},
+  private: false,
+  joined: false,
 };
 
 const reducer = handleActions(
@@ -38,6 +51,19 @@ const reducer = handleActions(
       return {
         ...state,
         created: payload,
+      };
+    },
+    [JOIN_ROOM_SUCCESS]: (state, { payload }) => {
+      return {
+        ...state,
+        room: payload,
+        joined: true,
+      };
+    },
+    [JOIN_ROOM_PRIVATE]: (state, { payload }) => {
+      return {
+        ...state,
+        private: payload,
       };
     },
   },

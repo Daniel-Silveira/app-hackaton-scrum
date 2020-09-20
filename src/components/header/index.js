@@ -3,9 +3,11 @@ import { ActionButton, Container } from "./styled";
 import { Feather } from "@expo/vector-icons";
 import DefaultText from "../defaultText";
 import { useNavigation } from "@react-navigation/native";
+import MembersRoom from "../members";
+import BoxModal from "../modal/boxModal";
 
-const HeaderCards = ({ data }) => {
-  const { goBack } = useNavigation();
+const HeaderCards = ({ data, members }) => {
+  const { goBack, navigate } = useNavigation();
   return (
     <Container>
       <ActionButton onPress={() => goBack()}>
@@ -18,7 +20,17 @@ const HeaderCards = ({ data }) => {
         bold
         align="center"
       />
-      <ActionButton>
+      <ActionButton
+        onPress={() =>
+          navigate("Modal", {
+            component: (props) => (
+              <BoxModal size={50} headerShown={false} {...props}>
+                <MembersRoom members={members} />
+              </BoxModal>
+            ),
+          })
+        }
+      >
         <Feather name="users" size={24} color="black" />
       </ActionButton>
     </Container>

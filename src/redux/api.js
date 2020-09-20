@@ -1,9 +1,9 @@
 import axios from "axios";
 
-export const API = "http://10.0.0.109:3001";
+export const API = "https://78176a28c984.ngrok.io";
 
 const instance = axios.create({
-  baseURL: "http://10.0.0.109:3001",
+  baseURL: "https://78176a28c984.ngrok.io",
   timeout: 30000,
   headers: {
     Accept: "application/json",
