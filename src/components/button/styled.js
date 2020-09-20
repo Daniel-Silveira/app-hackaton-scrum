@@ -18,10 +18,10 @@ export const StyledButton = styled.TouchableOpacity`
   background-color: ${(g) => g.theme.color.button.whitePure};
   padding: ${getRelativeSize(15)} ${getRelativeSize(10)};
   border-radius: ${(g) => g.theme.radius.medium};
+  border-color: ${(g) => g.theme.color.button.primary};
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  border-color: ${(g) => g.theme.color.button.primary};
   border-width: 1px;
   width: ${getPercentageSizeWidth(90)};
   ${({ outline, color }) =>

@@ -1,13 +1,20 @@
 import React, { useEffect, useState } from "react";
 import DefaultText from "../../components/defaultText";
 import HeaderCards from "../../components/header";
-import { Container, Header } from "./styled";
+import { Container, Header, FixCard } from "./styled";
+
 import socketIOClient from "socket.io-client";
 import { useSelector } from "react-redux";
-import { Text } from "react-native";
 import Button from "../../components/button";
+import { ScrollView } from "react-native";
+import CardRoom from "../../components/CardRoom";
 
-const Room = ({ navigation, route }) => {
+
+const Room = ({  navigation, route  }) => {
+  const list = [
+    { title: "teste", description: "teste", rate: "" },
+    { title: "teste", description: "teste", rate: "" },
+  ];
   const data = route?.params?.data;
   const {
     user: { user },
@@ -43,7 +50,19 @@ const Room = ({ navigation, route }) => {
   return !!data?._id ? (
     <Container>
       <HeaderCards data={data} members={response} />
-      {user._id === room.ownerId && <Button text="Start" onPress={start} />}
+      <ScrollView>
+        <FixCard>
+          {list.map((i) => (
+            <>
+              <CardRoom
+                title={i.title}
+                description={i.description}
+                rate={i.rate}
+              />
+            </>
+          ))}
+        </FixCard>
+      </ScrollView>
     </Container>
   ) : null;
 };
