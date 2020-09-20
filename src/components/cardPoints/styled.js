@@ -1,7 +1,7 @@
-import styled from "styled-components";
+import styled from "styled-components/native";
 import { getPercentageSizeWidth, getRelativeSize } from "../../utils";
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   width: ${getPercentageSizeWidth(30)};
   height: ${getPercentageSizeWidth(40)};
   background-color: ${(g) => g.theme.color.button.input};
