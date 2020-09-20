@@ -6,6 +6,17 @@ import DefaultText from "../../components/defaultText";
 import CardPoints from "../../components/cardPoints";
 
 const Cards = () => {
+  const data = [
+    { number: "0" },
+    { number: "1" },
+    { number: "2" },
+    { number: "3" },
+    { number: "5" },
+    { number: "8" },
+    { number: "?" },
+    { number: "inf" },
+    { number: "coffe" },
+  ];
   return (
     <Container>
       <HeaderCards />
@@ -13,19 +24,14 @@ const Cards = () => {
         text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis in id pellentesque ullamcorper"
         themeColor="primary"
         type="body"
+        width={95}
         mTop={20}
         align="center"
       />
       <FixCard>
-        <CardPoints />
-        <CardPoints />
-        <CardPoints />
-        <CardPoints />
-        <CardPoints />
-        <CardPoints />
-        <CardPoints />
-        <CardPoints />
-        <CardPoints />
+        {data.map((i) => (
+          <CardPoints text={i.number} />
+        ))}
       </FixCard>
     </Container>
   );
