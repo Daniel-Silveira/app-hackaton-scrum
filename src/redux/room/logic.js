@@ -1,11 +1,14 @@
 import { createLogic } from "redux-logic";
 import {
   CREATE_ROOM,
+  CREATE_TASK,
   joinRoomPrivate,
   joinRoomSuccess,
   JOIN_ROOM,
   listRoomSuccess,
+  listTaskSuccess,
   LIST_ROOM,
+  LIST_TASK,
 } from ".";
 import http from "../api";
 
@@ -38,6 +41,31 @@ export const handleCreateRoom = () => {
   });
 };
 
+export const handleCreateTask = () => {
+  return createLogic({
+    type: CREATE_TASK,
+    process(
+      {
+        action: {
+          payload: { credentials },
+        },
+      },
+      dispatch,
+      done
+    ) {
+      console.log(credentials)
+      http
+        .post("/task/create", JSON.stringify(credentials))
+        .then((res) => res.data)
+        .then((res) => dispatch(listTaskSuccess(res)))
+        .catch((err) => {
+          return console.log(err);
+        })
+        .finally(done);
+    },
+  });
+};
+
 export const handleListRoom = () => {
   return createLogic({
     type: LIST_ROOM,
@@ -46,6 +74,22 @@ export const handleListRoom = () => {
         .get(`/room/list/${payload}`)
         .then((res) => res.data)
         .then((res) => dispatch(listRoomSuccess(res)))
+        .catch((err) => {
+          return console.log(err);
+        })
+        .finally(done);
+    },
+  });
+};
+
+export const handleListTask = () => {
+  return createLogic({
+    type: LIST_TASK,
+    process({ action: { payload } }, dispatch, done) {
+      http
+        .get(`/task/list/${payload}`)
+        .then((res) => res.data)
+        .then((res) => dispatch(listTaskSuccess(res)))
         .catch((err) => {
           return console.log(err);
         })
@@ -76,7 +120,13 @@ export const handleJoinRoom = () => {
 };
 
 const configureRoomLogics = () => {
-  return [handleCreateRoom(), handleListRoom(), handleJoinRoom()];
+  return [
+    handleCreateRoom(),
+    handleListRoom(),
+    handleJoinRoom(),
+    handleListTask(),
+    handleCreateTask()
+  ];
 };
 
 export default configureRoomLogics;

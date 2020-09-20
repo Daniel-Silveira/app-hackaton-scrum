@@ -36,7 +36,7 @@ const Navigation = () => {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator mode="card" initialRouteName="Cards">
+      <Stack.Navigator mode="card" initialRouteName="Initial">
         <Stack.Screen
           name="Initial"
           options={defaultOptions}

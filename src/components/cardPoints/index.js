@@ -2,9 +2,9 @@ import React from "react";
 import DefaultText from "../defaultText";
 import { Container, Pointer } from "./styled";
 
-const CardPoints = ({ text }) => {
+const CardPoints = ({ text, onPress }) => {
   return (
-    <Container>
+    <Container onPress={onPress}>
       <Pointer />
       <DefaultText
         text={text}

@@ -12,8 +12,6 @@ export const Header = styled.View`
 `;
 
 export const FixCard = styled.View`
-  flex-direction: row;
+align-items: center;
   justify-content: space-around;
-  flex-wrap: wrap;
-  padding: ${getRelativeSize(10)};
 `;

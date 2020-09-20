@@ -7,33 +7,35 @@ import CardPoints from "../../components/cardPoints";
 import socketIOClient from "socket.io-client";
 import { useSelector } from "react-redux";
 
-const Cards = ({ navigation }) => {
-  const ENDPOINT = "https://64eec3200afa.ngrok.io";
+const Cards = ({ navigation, route }) => {
+  const ENDPOINT = "http://10.0.0.109:3002";
+  const params = route?.params?.data;
   const socket = socketIOClient(ENDPOINT);
   const [task, setTask] = useState();
+  const [votes, setVotes] = useState([]);
   const {
     user: { user },
     room: { room },
   } = useSelector((value) => value);
 
-  const data = [
-    { number: "0" },
-    { number: "1" },
-    { number: "2" },
-    { number: "3" },
-    { number: "5" },
-    { number: "8" },
-    { number: "?" },
-    { number: "inf" },
-    { number: "coffe" },
+  const list = [
+    { rate: "0" },
+    { rate: "1" },
+    { rate: "2" },
+    { rate: "3" },
+    { rate: "5" },
+    { rate: "8" },
+    { rate: "?" },
+    { rate: "inf" },
+    { rate: "coffe" },
   ];
-  const backEmit = () => {
-    socket.emit("roomAdmin", { taskId: false });
-  };
+  // const backEmit = () => {
+  //   socket.emit("roomAdmin", { taskId: false });
+  // };
 
   useEffect(() => {
-    socket.on("roomAdmin", (data) => {
-      setTask(data.taskId);
+    socket.on("taskVote", (data) => {
+      setVotes(data);
     });
   }, []);
 
@@ -41,11 +43,16 @@ const Cards = ({ navigation }) => {
   //   !task && navigation.goBack();
   // }, [task]);
 
+  const vote = (item) => {
+    socket.emit("taskVote", { rate: item.number, taskId: params.task._id });
+  };
+
   return (
     <Container>
-      {user._id === room.ownerId && <Button text="Voltar" onPress={backEmit} />}
+      <HeaderCards data={params.task} members={params.members} />
+
       <DefaultText
-        text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mattis in id pellentesque ullamcorper"
+        text={params.task.description}
         themeColor="primary"
         type="body"
         width={95}
@@ -53,8 +60,8 @@ const Cards = ({ navigation }) => {
         align="center"
       />
       <FixCard>
-        {data.map((i) => (
-          <CardPoints text={i.number} />
+        {list.map((i, index) => (
+          <CardPoints onPress={() => vote(i)} key={index} text={i.rate} />
         ))}
       </FixCard>
     </Container>

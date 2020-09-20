@@ -24,6 +24,20 @@ export const { listRoom, listRoomSuccess } = createActions({
   [LIST_ROOM_SUCCESS]: (list) => ({ list }),
 });
 
+export const LIST_TASK = "LIST_TASK";
+export const LIST_TASK_SUCCESS = "LIST_TASK_SUCCESS";
+
+export const { listTask, listTaskSuccess } = createActions({
+  [LIST_TASK]: (id) => id,
+  [LIST_TASK_SUCCESS]: (list) => ({ list }),
+});
+
+export const CREATE_TASK = "CREATE_TASK";
+
+export const { createTask } = createActions({
+  [CREATE_TASK]: (credentials) => ({credentials}),
+});
+
 export const CREATED_STATUS = "CREATED_STATUS";
 
 export const { createdStatus } = createActions({
@@ -36,6 +50,7 @@ export const INITIAL_STATE = {
   room: {},
   private: false,
   joined: false,
+  listTask: [],
 };
 
 const reducer = handleActions(
@@ -44,6 +59,13 @@ const reducer = handleActions(
       return {
         ...state,
         list,
+        created: true,
+      };
+    },
+    [LIST_TASK_SUCCESS]: (state, { payload: { list } }) => {
+      return {
+        ...state,
+        listTask: list,
         created: true,
       };
     },

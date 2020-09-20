@@ -28,6 +28,7 @@ export const { requestLogoutUser } = createActions({
 export const INITIAL_STATE = {
   user: {},
   loading: false,
+  sessionId: Math.random().toString().slice(2, 20),
 };
 
 const reducer = handleActions(

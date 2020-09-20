@@ -80,10 +80,9 @@ const Initial = ({ navigation }) => {
         color="primary"
         align="center"
         mTop={20}
-        text="Entrar na sala"
+        text="Entrar em uma sala"
         onPress={enterRoom}
       />
-      <Button color="primary" align="center" mTop={20} text="Scrum Poker" />
     </Container>
   );
 };

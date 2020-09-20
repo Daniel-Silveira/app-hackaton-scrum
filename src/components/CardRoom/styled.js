@@ -1,21 +1,19 @@
-import styled from "styled-components/native";
+import styled, { css } from "styled-components/native";
 import { getPercentageSizeWidth, getRelativeSize } from "../../utils";
 
-export const Container = styled.View`
+export const Container = styled.TouchableOpacity`
   width: ${getPercentageSizeWidth(90)};
-  height: ${getPercentageSizeWidth(35)};
   border-radius: ${(g) => g.theme.radius.medium};
-  border-color: ${(g) => g.theme.color.button.black};
+  border-color: rgba(0, 0, 0, 0.5);
   border-width: 1px;
-  margin-top: ${getRelativeSize(10)};
   align-items: center;
-`;
-
-export const FixCard = styled.View`
   flex-direction: row;
-  padding: ${getRelativeSize(10)};
-  width: ${getPercentageSizeWidth(90)};
-  justify-content: space-around;
-  align-items: center;
-  margin-top: ${getRelativeSize(15)};
+  justify-content: space-between;
+  margin-bottom: ${getRelativeSize(10)};
+  padding: ${getRelativeSize(5)} ${getRelativeSize(10)};
+  ${({ fix }) =>
+    fix &&
+    css`
+      border-style: dashed;
+    `}
 `;
