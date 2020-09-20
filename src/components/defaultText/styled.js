@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from "styled-components/native";
 import { getPercentageSizeHeight, getPercentageSizeWidth } from "../../utils";
 
 export const StyledText = styled.Text`

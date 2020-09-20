@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled, { css } from "styled-components/native";
 import { getRelativeSize, getPercentageSizeWidth } from "../../utils";
 
 export const Container = styled.View`
