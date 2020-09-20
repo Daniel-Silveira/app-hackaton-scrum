@@ -17,15 +17,39 @@ const Cards = ({ navigation }) => {
   } = useSelector((value) => value);
 
   const data = [
-    { number: "0" },
-    { number: "1" },
-    { number: "2" },
-    { number: "3" },
-    { number: "5" },
-    { number: "8" },
-    { number: "?" },
-    { number: "inf" },
-    { number: "coffe" },
+    { number: "0", image: require("../../Icons/star.png"), color: "#98FB98" },
+    {
+      number: "1",
+      image: require("../../Icons/pokeball.png"),
+      color: "#87CEFA",
+    },
+    {
+      number: "2",
+      image: require("../../Icons/squirtle.png"),
+      color: "#3CB371",
+    },
+    {
+      number: "3",
+      image: require("../../Icons/pikachu.png"),
+      color: "#7FFFD4",
+    },
+    {
+      number: "5",
+      image: require("../../Icons/charmander.png"),
+      color: "#D02090",
+    },
+    { number: "8", image: require("../../Icons/zubat.png"), color: "#4682B4" },
+    { number: "?", image: require("../../Icons/meowth.png"), color: "#32CD32" },
+    {
+      number: "inf",
+      image: require("../../Icons/compass.png"),
+      color: "#696969",
+    },
+    {
+      number: "coffe",
+      image: require("../../Icons/hot-cup.png"),
+      color: "#FFD700",
+    },
   ];
   const backEmit = () => {
     socket.emit("roomAdmin", { taskId: false });
@@ -39,7 +63,7 @@ const Cards = ({ navigation }) => {
 
   // useEffect(() => {
   //   !task && navigation.goBack();
-  // }, [task]);
+  // }, [task]);qa
 
   return (
     <Container>
@@ -54,7 +78,7 @@ const Cards = ({ navigation }) => {
       />
       <FixCard>
         {data.map((i) => (
-          <CardPoints text={i.number} />
+          <CardPoints image={i.image} text={i.number} />
         ))}
       </FixCard>
     </Container>
