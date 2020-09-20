@@ -18,16 +18,40 @@ const Cards = ({ navigation, route }) => {
     room: { room },
   } = useSelector((value) => value);
 
-  const list = [
-    { rate: "0" },
-    { rate: "1" },
-    { rate: "2" },
-    { rate: "3" },
-    { rate: "5" },
-    { rate: "8" },
-    { rate: "?" },
-    { rate: "inf" },
-    { rate: "coffe" },
+  const data = [
+    { number: "0", image: require("../../Icons/star.png"), color: "#98FB98" },
+    {
+      number: "1",
+      image: require("../../Icons/pokeball.png"),
+      color: "#87CEFA",
+    },
+    {
+      number: "2",
+      image: require("../../Icons/squirtle.png"),
+      color: "#3CB371",
+    },
+    {
+      number: "3",
+      image: require("../../Icons/pikachu.png"),
+      color: "#7FFFD4",
+    },
+    {
+      number: "5",
+      image: require("../../Icons/charmander.png"),
+      color: "#D02090",
+    },
+    { number: "8", image: require("../../Icons/zubat.png"), color: "#4682B4" },
+    { number: "?", image: require("../../Icons/meowth.png"), color: "#32CD32" },
+    {
+      number: "inf",
+      image: require("../../Icons/compass.png"),
+      color: "#696969",
+    },
+    {
+      number: "coffe",
+      image: require("../../Icons/hot-cup.png"),
+      color: "#FFD700",
+    },
   ];
   // const backEmit = () => {
   //   socket.emit("roomAdmin", { taskId: false });
@@ -41,7 +65,7 @@ const Cards = ({ navigation, route }) => {
 
   // useEffect(() => {
   //   !task && navigation.goBack();
-  // }, [task]);
+  // }, [task]);qa
 
   const vote = (item) => {
     socket.emit("taskVote", { rate: item.number, taskId: params.task._id });
@@ -60,8 +84,13 @@ const Cards = ({ navigation, route }) => {
         align="center"
       />
       <FixCard>
-        {list.map((i, index) => (
-          <CardPoints onPress={() => vote(i)} key={index} text={i.rate} />
+        {data.map((i, index) => (
+          <CardPoints
+            key={index}
+            image={i.image}
+            onPress={() => vote(i)}
+            text={i.number}
+          />
         ))}
       </FixCard>
     </Container>

@@ -1,15 +1,18 @@
 import React from "react";
 import DefaultText from "../defaultText";
 import { Container, Pointer } from "./styled";
+import { Image } from "react-native";
 
-const CardPoints = ({ text, onPress }) => {
+const CardPoints = ({ text, image }) => {
   return (
-    <Container onPress={onPress}>
-      <Pointer />
+    <Container>
+      <Pointer>
+        <Image source={image} style={{ width: 50, height: 50 }} />
+      </Pointer>
       <DefaultText
         text={text}
         themeColor="primary"
-        mTop={20}
+        mTop={50}
         type="title2"
         align="center"
       />

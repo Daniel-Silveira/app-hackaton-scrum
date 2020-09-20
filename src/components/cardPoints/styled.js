@@ -11,9 +11,9 @@ export const Container = styled.TouchableOpacity`
 `;
 
 export const Pointer = styled.View`
-  width: ${getPercentageSizeWidth(15)};
-  height: ${getPercentageSizeWidth(15)};
+  align-items: center;
+  width: ${getRelativeSize(20)};
+  height: ${getRelativeSize(20)};
   margin-top: ${getPercentageSizeWidth(12)};
-  background-color: ${(g) => g.theme.color.button.primary};
   border-radius: ${(g) => g.theme.radius.ball};
 `;
