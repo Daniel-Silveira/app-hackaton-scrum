@@ -11,7 +11,7 @@ const BoxModal = props => {
   const navigation = useNavigation()
   navigation.setOptions({
     headerShown,
-    gestureResponseDistance,
+    gestureResponseDistance: 100 - size,
     cardStyle: {
       backgroundColor: overlay && 'rgba(0,0,0,.3)',
     },

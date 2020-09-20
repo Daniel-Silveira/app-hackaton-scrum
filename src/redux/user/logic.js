@@ -4,7 +4,6 @@ import {
   requestAccessSuccess,
   requestAccessError,
   REQUEST_REGISTER_USER,
-
 } from ".";
 import { AsyncStorage } from "react-native";
 import http from "../api";
@@ -58,6 +57,7 @@ export const handleRequestRegisterUserLogic = () => {
           await AsyncStorage.setItem("token", JSON.stringify(token));
         })
         .catch((err) => {
+          console.log(err);
           return dispatch(requestAccessError(true));
         })
         .finally(done);

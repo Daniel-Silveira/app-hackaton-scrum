@@ -26,7 +26,6 @@ const Button = ({
         color={color}
       >
         <DefaultText
-          white={!outline}
           themeColor={color}
           bold={bold}
           //   type={type || "label"}
